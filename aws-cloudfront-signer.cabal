@@ -1,8 +1,8 @@
 Name:               aws-cloudfront-signer
-Version:            1.0.0.0
+Version:            1.0.0.1
 Synopsis:           CloudFront URL signer
 Description:        Provides functions for reading in the signing keys from file and making up time-limited, signed URLS for accessing CloudFront-hosted files.
-Homepage:           http://github.com/cdornan/cloudfront-signer
+Homepage:           http://github.com/iconnect/aws-cloudfront-signer
 Author:             Chris Dornan
 Maintainer:         chris@chrisdornan.com
 License:            BSD3
@@ -15,13 +15,13 @@ Build-type:         Simple
 Cabal-version:      >= 1.14
 
 Source-repository this
-    type: git
-    location:       https://github.com/lainepress/aws-cloudfront-signer.git
-    tag:            1.0.0.0
+    type:           git
+    location:       https://github.com/iconnect/aws-cloudfront-signer.git
+    tag:            1.0.0.1
 
 Source-repository head
-    type: git
-    location:       https://github.com/lainepress/aws-cloudfront-signer.git
+    type:           git
+    location:       https://github.com/iconnect/aws-cloudfront-signer.git
 
 library
     Hs-Source-Dirs: src
