@@ -1,5 +1,5 @@
 Name:               aws-cloudfront-signer
-Version:            1.1.0.2
+Version:            1.1.0.3
 Synopsis:           For signing AWS CloudFront HTTP URL requests
 Description:        Provides functions for reading in the signing keys from file and making up time-limited, signed URLS for accessing AWS CloudFront-hosted files.
 Homepage:           http://github.com/iconnect/aws-cloudfront-signer
@@ -27,7 +27,7 @@ library
     Hs-Source-Dirs: src
 
     Build-depends:
-        RSA                  >= 1.2.2.0  && < 2,
+        RSA                  >= 1.2.2.0        ,
         asn1-types           >= 0.2.0          ,
         asn1-encoding        >= 0.8.0          ,
         base                 == 4.*            ,
