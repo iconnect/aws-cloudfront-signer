@@ -1,4 +1,4 @@
-{-# LANGUAGE RecordWildCards            #-} 
+{-# LANGUAGE CPP, RecordWildCards            #-}
 
 module Aws.CloudFront.Signer
     ( URL
@@ -25,7 +25,10 @@ import           Data.Maybe
 import           Codec.Crypto.RSA
 import qualified Crypto.Types.PubKey.RSA        as C
 import           Text.Printf
-import           System.Locale
+#if MIN_VERSION_time(1,5,0)
+#else
+import           System.Locale (defaultTimeLocale)
+#endif
 
 -- | input and output URLs
 type URL        = String
@@ -159,8 +162,15 @@ customPolicy CloudFrontPolicy{..} = unlines $ catMaybes
 unixTime :: UTCTime -> String
 unixTime = formatTime defaultTimeLocale "%s" 
 
+ha_sha1 :: HashInfo
+#if MIN_VERSION_RSA(2,0,0)
+ha_sha1 = hashSHA1
+#else
+ha_sha1 = ha_SHA1
+#endif
+
 rsa_sha1 :: PrivateKey -> String -> String
-rsa_sha1 pk = LBS.unpack . rsassa_pkcs1_v1_5_sign ha_SHA1 pk . LBS.pack
+rsa_sha1 pk = LBS.unpack . rsassa_pkcs1_v1_5_sign ha_sha1 pk . LBS.pack
 
 b64 :: String -> String
 b64 = map f . LBS.unpack . B64.encode . LBS.pack
